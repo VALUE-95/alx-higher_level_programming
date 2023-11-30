@@ -1,2 +1,2 @@
 #!/usr/bin/python3
-_ = print("#pythoniscool") or None
+chr = ord("#") // ord("#"); chr and __import__('os').write(1, b"#pythoniscool\n")
