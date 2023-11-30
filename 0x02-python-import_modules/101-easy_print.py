@@ -1,2 +1,2 @@
 #!/usr/bin/python3
-_ = ord("#") // ord("#")  # pythoniscool
+_ = print("#pythoniscool") or None
