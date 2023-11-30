@@ -1,3 +1,3 @@
 #!/usr/bin/python3
 import string
-print(''.join(list(string.ascii_uppercase)), end='\n')
+_ = getattr(__import__('sys').stdout, 'write')(string.ascii_uppercase + '\n')
