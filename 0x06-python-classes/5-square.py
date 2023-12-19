@@ -18,8 +18,8 @@ class Square:
         Raises:
             TypeError: If size is not an integer or
             position is not a tuple of two integers.
-            ValueError: If size is less than 0
-            or position contains negative values.
+            ValueError: If size is less than 0 or
+            position contains negative values.
         """
         self.size = size
         self.position = position
@@ -82,8 +82,8 @@ class Square:
                 or value[0] < 0
                 or value[1] < 0
                 ):
-            raise TypeError("should be a tuple of two positive integers")
-            self.__position = value
+            raise TypeError("must be a tuple of two positive integers")
+        self.__position = value
 
     def area(self):
         """
