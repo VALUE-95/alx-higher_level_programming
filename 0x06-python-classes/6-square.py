@@ -1,28 +1,28 @@
 #!/usr/bin/python3
+"""square"""
 
 
 class Square:
-    """Represents a square with a given size."""
+    """Represents a square with a given size and position."""
+
     def __init__(self, size=0, position=(0, 0)):
         """
         Initializes a new instance of the Square class.
 
         Args:
             size (int, optional): The length of the square's sides.
-                Defaults to 0.
+            Defaults to 0.
             position (tuple, optional): The position of the square.
-                Defaults to (0, 0).
+            Defaults to (0, 0).
 
         Raises:
-            TypeError: If size is not an integer or position is not a tuple.
-            ValueError: If size is less than 0 or position contains
-                non-positive integers.
+            TypeError: If size is not an integer or
+            position is not a tuple of two integers.
+            ValueError: If size is less than 0 or
+            position contains negative values.
         """
-        self.__size = 0  # Initialize with default value
-        self.__position = (0, 0)  # Initialize with default value
-        self.size = size  # Use the setter method to validate and set the size
+        self.size = size
         self.position = position
-        # Use the setter method to validate and set the position
 
     @property
     def size(self):
@@ -46,7 +46,7 @@ class Square:
             TypeError: If value is not an integer.
             ValueError: If value is less than 0.
         """
-        if not isinstance(value, int):
+        if type(value) is not int:
             raise TypeError("size must be an integer")
         elif value < 0:
             raise ValueError("size must be >= 0")
@@ -71,14 +71,18 @@ class Square:
             value (tuple): The new position of the square.
 
         Raises:
-            TypeError: If value is not a tuple of 2 positive integers.
-            ValueError: If value contains non-positive integers.
+            TypeError: If value is not a tuple of two positive integers.
+            ValueError: If value contains negative values.
         """
-        if (not isinstance(value, tuple) or
-                len(value) != 2 or
-                not all(isinstance(num, int) for num in value) or
-                not all(num >= 0 for num in value)):
-            raise TypeError("position must be a tuple of 2 positive integers")
+        if (
+                type(value) is not tuple
+                or len(value) != 2
+                or type(value[0]) is not int
+                or type(value[1]) is not int
+                or value[0] < 0
+                or value[1] < 0
+                ):
+            raise TypeError("must be a tuple of two positive integers")
         self.__position = value
 
     def area(self):
@@ -100,11 +104,28 @@ class Square:
             None
         """
         if self.__size == 0:
-            print()
+            print("")
             return
 
-        for _ in range(self.__position[1]):
-            print()
+        for i in range(0, self.__position[1]):
+            print("")
 
-        for _ in range(self.__size):
-            print(" " * self.__position[0] + "#" * self.__size)
+        for i in range(0, self.__size):
+            [print(" ", end="") for j in range(0, self.__position[0])]
+            [print("#", end="") for k in range(0, self.__size)]
+            print("")
+
+
+if __name__ == "__main__":
+    my_square_1 = Square(3)
+    my_square_1.my_print()
+
+    print("--")
+
+    my_square_2 = Square(3, (1, 1))
+    my_square_2.my_print()
+
+    print("--")
+
+    my_square_3 = Square(3, (3, 0))
+    my_square_3.my_print()
